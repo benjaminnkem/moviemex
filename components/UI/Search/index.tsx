@@ -96,7 +96,7 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
                   {moviesResults.map((movie) => (
                     <li key={movie.id}>
                       <div
-                        className="flex space-x-4 cursor-pointer duration-200 hover:bg-rose-50 p-1 rounded-md"
+                        className="flex space-x-4 cursor-pointer duration-200 hover:bg-rose-50 dark:hover:bg-rose-600 p-1 rounded-md"
                         title={movie.title}
                       >
                         <div className="h-16 w-16 overflow-hidden rounded-md">

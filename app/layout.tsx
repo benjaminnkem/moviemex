@@ -2,6 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import ReactToast from "@/lib/configs/react-toast";
+import "remixicon/fonts/remixicon.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -15,7 +19,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={dmSans.className}>
         <ReactToast />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }

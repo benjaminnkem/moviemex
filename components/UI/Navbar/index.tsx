@@ -80,7 +80,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
                 <FontAwesomeIcon icon={faChevronDown} />
               </div>
 
-              <button className="bg-transparent px-4 py-1 rounded-full border-[3px] text-sm border-rose-500">
+              <button className="bg-transparent px-4 py-1 rounded-full border-[3px] text-sm border-rose-500 hover:text-black hover:bg-rose-500 duration-200">
                 Sign In
               </button>
             </div>

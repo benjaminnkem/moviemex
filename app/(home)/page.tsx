@@ -38,7 +38,6 @@ const Home: React.FC = async () => {
     };
   });
 
-
   return (
     <>
       <HeaderActions movieData={formattedMoviesData}>
