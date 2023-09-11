@@ -29,7 +29,7 @@ const Home: React.FC = async () => {
       title: movieData.title,
       original_language: movieData.original_language,
       overview: movieData.overview,
-      poster_path: `https://image.tmdb.org/t/p/w780${movieData.poster_path}`,
+      backdrop_path: `https://image.tmdb.org/t/p/original${movieData.backdrop_path}`,
       release_date: movieData.release_date,
       vote_average: movieData.vote_average,
     };

@@ -74,7 +74,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
               </div>
 
               <button className="bg-transparent px-4 py-1 rounded-full border-[3px] text-sm border-rose-500">
-                SIGN IN
+                Sign In
               </button>
             </div>
           </nav>
