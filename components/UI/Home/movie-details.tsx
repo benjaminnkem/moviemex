@@ -9,8 +9,11 @@ interface MovieDetailsShowcaseProps {
 
 const MovieDetailsShowcase = ({ movie }: MovieDetailsShowcaseProps) => {
   return (
-    <div className="w-full overflow-hidden rounded-md bg-white dark:bg-transparent" data-testid="movie-card">
-      <div className="h-[20rem] relative duration-200 group overflow-hidden">
+    <div
+      className="w-full overflow-hidden rounded-md group  cursor-pointer bg-white dark:bg-transparent"
+      data-testid="movie-card"
+    >
+      <div className="h-[20rem] relative duration-200 overflow-hidden">
         <Image
           src={movie.poster_path}
           alt={`${movie.title} Movie Cover`}
@@ -20,11 +23,13 @@ const MovieDetailsShowcase = ({ movie }: MovieDetailsShowcaseProps) => {
           data-testid="movie-poster"
         />
 
-        <div className="absolute bg-black bg-opacity-0 duration-200 hover:bg-opacity-20 w-full h-full top-0 left-0 z-10"></div>
+        {/* <div className="absolute bg-black bg-opacity-0 duration-200 hover:bg-opacity-20 w-full h-full top-0 left-0 z-10"></div> */}
       </div>
 
       <div className="py-3 space-y-1">
-        <p className="text-gray-400 dark:text-gray-300 font-semibold" data-testid="movie-release-date">{movie.release_date}</p>
+        <p className="text-gray-400 dark:text-gray-300 font-semibold" data-testid="movie-release-date">
+          {movie.release_date}
+        </p>
 
         <div className="space-y-1">
           <h3 className="font-semibold text-lg" data-testid="movie-title">

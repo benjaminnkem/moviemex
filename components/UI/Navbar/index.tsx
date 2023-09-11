@@ -5,6 +5,8 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faEarth, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import SearchComponent from "../Search";
 
 interface NavbarProps {
   isTransparent?: string;
@@ -17,6 +19,7 @@ interface NavbarItemsProps {
 
 const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
   const pathname = usePathname();
+  const [isSearchOpen, setIsSideOpen] = useState(false);
 
   const navLinks: NavbarItemsProps[] = [
     {
@@ -41,8 +44,12 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
     },
   ];
 
+  const toggleSearchBar = () => setIsSideOpen(!isSearchOpen);
+
   return (
     <>
+      <SearchComponent isOpen={isSearchOpen} togggleOpen={toggleSearchBar} />
+
       <div className={`${isTransparent && "bg-transparent"} z-50`}>
         <MaxWidth>
           <nav className="flex justify-between items-center py-6">
@@ -65,7 +72,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
             </ul>
 
             <div className="flex space-x-4 items-center">
-              <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" />
+              <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" onClick={toggleSearchBar} />
 
               <div className="flex items-center space-x-1 text-sm cursor-pointer" title="Change Language">
                 <FontAwesomeIcon icon={faEarth} className="text-red-500" />

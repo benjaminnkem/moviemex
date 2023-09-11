@@ -21,7 +21,7 @@ const getInitialMovies = async () => {
 
   return res.json();
 };
-``;
+
 const Home: React.FC = async () => {
   const initialMoviesData = await getInitialMovies();
   const formattedMoviesData: MovieData[] = initialMoviesData.results.map((movieData: MovieData) => {
@@ -37,6 +37,7 @@ const Home: React.FC = async () => {
       release_date: new Date(movieData.release_date).getFullYear(),
     };
   });
+
 
   return (
     <>
