@@ -66,14 +66,14 @@ const MainMovieDetails = async ({ params }) => {
       </header>
 
       <section className="my-4">
-        <div className="grid gap-4" style={{ gridTemplateColumns: "2fr 1fr" }}>
+        <div className="lg:grid flex flex-col gap-4" style={{ gridTemplateColumns: "2fr 1fr" }}>
           <div>
             <div className="flex space-x-4 flex-wrap">
-              <div className="flex items-center space-x-2 text-xl">
-                <p className="">{movieDetails.original_title}</p>
+              <div className="flex items-center flex-wrap space-x-2 text-xl">
+                <p className="" data-testid="movie-title">{movieDetails.original_title}</p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
-                <p className="">{new Date(movieDetails.release_date).getFullYear()}</p>
+                <p className="" data-testid="movie-release-date">{new Date(movieDetails.release_date).getFullYear()}</p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
                 <p className="">PG-13</p>
@@ -97,7 +97,7 @@ const MainMovieDetails = async ({ params }) => {
             </div>
 
             <div className="mt-4">
-              <p>{movieDetails.overview}</p>
+              <p data-testid="overview">{movieDetails.overview}</p>
 
               <div className="flex flex-col space-y-4 mt-6">
                 <p>

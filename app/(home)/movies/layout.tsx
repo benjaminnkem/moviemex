@@ -5,7 +5,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="detLayout grid gap-4">
         <MovieDetailsSideBar />
-        <main className="p-5 h-screen md:ml-[280px] sm:ml-[200px]">{children}</main>
+        <main className="p-5 h-screen md:ml-[280px] sm:ml-[160px] ml-[60px]">{children}</main>
       </div>
     </>
   );

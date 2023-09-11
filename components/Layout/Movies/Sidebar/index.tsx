@@ -11,10 +11,10 @@ const MovieDetailsSideBar = () => {
 
   return (
     <>
-      <aside className="min-h-screen fixed overflow-y-auto md:w-[280px] sm:w-[200px] rounded-tr-3xl rounded-br-rounded-tr-3xl border-2 space-y-14">
+      <aside className="min-h-screen fixed overflow-hidden md:w-[280px] sm:w-[160px] w-[60px] rounded-tr-3xl rounded-br-rounded-tr-3xl border-2 space-y-14">
         <Link href={"/"} className="flex space-x-4 items-center p-4">
           <Image src={`/images/others/movie_box_logo.png`} width={50} height={50} alt="Logo" />
-          <span className="font-bold text-xl">MovieMex</span>
+          <span className="font-bold md:text-xl sm:text-sm hidden sm:block">MovieMex</span>
         </Link>
 
         <div className="space-y-2">
@@ -27,12 +27,12 @@ const MovieDetailsSideBar = () => {
                   : "hover:bg-rose-50"
               }`}
             >
-              {link.icon} <p>{link.label}</p>
+              {link.icon} <p className="sm:block hidden">{link.label}</p>
             </div>
           ))}
         </div>
 
-        <div className="border border-rose-600 rounded-3xl bg-rose-50 pt-10 px-4 pb-4 space-y-2 mx-2 p-4">
+        <div className="border hidden sm:block border-rose-600 rounded-3xl bg-rose-50 pt-10 px-4 pb-4 space-y-2 mx-2 p-4">
           <h4 className="font-semibold text-lg leading-relaxed">Play more quizzes to earn free tickets</h4>
           <p className="text-gray-700">50k People are playing now.</p>
 
