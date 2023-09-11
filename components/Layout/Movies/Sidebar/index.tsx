@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const MovieDetailsSideBar = () => {
   const sideLinks = [
@@ -11,17 +12,19 @@ const MovieDetailsSideBar = () => {
   return (
     <>
       <aside className="min-h-screen fixed overflow-y-auto md:w-[280px] sm:w-[200px] rounded-tr-3xl rounded-br-rounded-tr-3xl border-2 space-y-14">
-        <div className="flex space-x-4 items-center p-4">
+        <Link href={"/"} className="flex space-x-4 items-center p-4">
           <Image src={`/images/others/movie_box_logo.png`} width={50} height={50} alt="Logo" />
           <span className="font-bold text-xl">MovieMex</span>
-        </div>
+        </Link>
 
         <div className="space-y-2">
           {sideLinks.map((link, idx) => (
             <div
               key={idx}
               className={`flex space-x-2 p-5 duration-200 cursor-pointer ${
-                link.label === "Movies" ? "border-r-[6px] border-rose-600 bg-rose-50 hover:bg-rose-100" : "hover:bg-rose-50"
+                link.label === "Movies"
+                  ? "border-r-[6px] border-rose-600 bg-rose-50 hover:bg-rose-100"
+                  : "hover:bg-rose-50"
               }`}
             >
               {link.icon} <p>{link.label}</p>

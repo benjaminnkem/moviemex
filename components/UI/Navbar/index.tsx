@@ -3,7 +3,7 @@
 import MaxWidth from "@/components/Layout/max-width";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faEarth, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faEarth, faChevronDown, faClose } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import SearchComponent from "../Search";
@@ -20,6 +20,7 @@ interface NavbarItemsProps {
 const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
   const pathname = usePathname();
   const [isSearchOpen, setIsSideOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const navLinks: NavbarItemsProps[] = [
     {
@@ -44,6 +45,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
     },
   ];
 
+  const toggleMobileNav = () => setIsMobileNavOpen(!isMobileNavOpen);
   const toggleSearchBar = () => setIsSideOpen(!isSearchOpen);
 
   return (
@@ -58,7 +60,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
               <span className="font-bold text-xl">MovieMex</span>
             </div>
 
-            <ul className="flex space-x-4 items-center">
+            <ul className="hidden space-x-4 items-center md:flex">
               {navLinks.map((item, idx) => (
                 <li
                   key={idx}
@@ -83,9 +85,45 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
               <button className="bg-transparent px-4 py-1 rounded-full border-[3px] text-sm border-rose-500 hover:text-black hover:bg-rose-500 duration-200">
                 Sign In
               </button>
+
+              <div
+                className="md:hidden w-8 h-8 rounded-full bg-rose-600 grid place-content-center cursor-pointer"
+                title="Menu"
+                onClick={toggleMobileNav}
+              >
+                <i className="ri-menu-4-fill text-lg"></i>
+              </div>
             </div>
           </nav>
         </MaxWidth>
+
+        <aside
+          className={`fixed top-0 right-0 backdrop-blur-md overflow-hidden duration-200 h-full z-[500] ${
+            isMobileNavOpen ? "w-full" : "w-0"
+          }`}
+        >
+          <div className="w-full h-full grid place-content-center">
+            <div className="text-center">
+              {navLinks.map((item, idx) => (
+                <p
+                  key={idx}
+                  className={`py-4 border-b-4 cursor-pointer duration-200 ${
+                    pathname === item.path ? "border-rose-500" : "border-transparent"
+                  }`}
+                >
+                  {item.tag}
+                </p>
+              ))}
+
+              <button
+                className="px-4 py-2 rounded-full border-2 hover:bg-rose-600 bg-opacity-40 duration-200 border-rose-600"
+                onClick={toggleMobileNav}
+              >
+                <span>Close Menu</span>
+              </button>
+            </div>
+          </div>
+        </aside>
       </div>
     </>
   );

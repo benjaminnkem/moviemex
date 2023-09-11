@@ -1,9 +1,10 @@
 "use client";
 
 import { MovieData } from "@/lib/types/movieData.types";
-import { faPlayCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faPlayCircle, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface HeaderActions {
@@ -14,7 +15,7 @@ interface HeaderActions {
 const HeaderActions = ({ children, movieData }: HeaderActions) => {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [slideLength, setSlideLength] = useState<number>(5);
-  const firstMovie = movieData[currentImageIndex];
+  const chosenMovie = movieData[currentImageIndex];
 
   const changeImageData = (imgIndex: number) => setCurrentImageIndex(imgIndex);
   const incrementSlideLength = () => setSlideLength((prev) => prev + 1);
@@ -23,8 +24,8 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
     <>
       <header className="lg:min-h-[40rem] md:min-h-[38rem] min-h-screen relative text-white">
         <Image
-          src={firstMovie?.backdrop_path ? firstMovie.backdrop_path : movieData[0].backdrop_path}
-          alt={`${firstMovie.title} Movie Cover`}
+          src={chosenMovie?.backdrop_path ? chosenMovie.backdrop_path : movieData[0].backdrop_path}
+          alt={`${chosenMovie.title} Movie Cover`}
           width={1024}
           height={600}
           className="absolute top-0 left-0 w-full h-full object-cover -z-10"
@@ -33,21 +34,28 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
         <div id="headerOverlay" className="absolute bg-black bg-opacity-60 w-full h-full top-0 left-0 z-10">
           {children}
 
-          <div className="md:min-h-[35rem] min-h-screen -mt-[3rem] flex items-center justify-center">
+          <div className="md:min-h-[35rem] min-h-screen md:-mt-[3rem] -mt-[4rem] flex items-center justify-center">
             <div className="md:max-w-contain mx-auto w-11/12">
-              <div className="flex justify-between items-center w-full">
-                <div className="max-w-2xl">
-                  <h1 className="text-[4rem] font-extrabold">{firstMovie.title}</h1>
+              <div className="flex flex-col sm:flex-row justify-between gap-4 items-center w-full">
+                <div className="max-w-2xl text-center sm:text-start">
+                  <h1 className="md:text-[4rem] sm:text-[3.5rem] text-[3rem] font-extrabold">{chosenMovie.title}</h1>
 
                   <div className="mt-3 space-y-3">
-                    <p className="text-lg">{firstMovie.overview}</p>
-                    <button className="bg-rose-600 duration-200 hover:bg-rose-700 rounded-lg px-6 py-2 flex items-center space-x-2 text-white">
-                      <FontAwesomeIcon icon={faPlayCircle} /> <span>Watch Trailer</span>{" "}
-                    </button>
+                    <p className="md:text-lg">{chosenMovie.overview}</p>
+                    <div className="flex items-center space-x-2 justify-center sm:justify-start">
+                      <button className="bg-rose-600 duration-200 hover:bg-rose-700 rounded-lg px-6 py-2 flex items-center space-x-2 text-white">
+                        <FontAwesomeIcon icon={faPlayCircle} /> <span>Watch Trailer</span>
+                      </button>
+                      <Link href={`/movies/${chosenMovie.id}`}>
+                        <button className="border-rose-600 duration-200 hover:bg-rose-700 bg-opacity-30 border-2 rounded-lg px-6 py-2 flex items-center space-x-2 text-white">
+                          <FontAwesomeIcon icon={faBook} /> <span>View Details</span>
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
-                <ul className="flex flex-col space-y-2">
+                <ul className="flex sm:flex-col gap-4 py-4 sm:py-0">
                   {Array(slideLength)
                     .fill("")
                     .map((_, idx) => (
@@ -55,7 +63,7 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
                         key={idx}
                         onClick={() => changeImageData(idx)}
                         className={`cursor-pointer duration-200 flex space-x-2 items-center ${
-                          currentImageIndex === idx ? "-translate-x-2 font-bold" : "opacity-70"
+                          currentImageIndex === idx ? "sm:-translate-x-2 sm:-translate-y-0 -translate-y-2 font-bold" : "opacity-70"
                         }`}
                       >
                         {/* <span
@@ -67,7 +75,11 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
                       </li>
                     ))}
                   {slideLength < 8 && (
-                    <FontAwesomeIcon icon={faPlus} onClick={() => incrementSlideLength()} className="cursor-pointer text-base block" />
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      onClick={() => incrementSlideLength()}
+                      className="cursor-pointer text-base block"
+                    />
                   )}
                 </ul>
               </div>

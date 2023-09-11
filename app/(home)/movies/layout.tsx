@@ -1,5 +1,4 @@
 import MovieDetailsSideBar from "@/components/Layout/Movies/Sidebar";
-import "./styles/layout.css";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
