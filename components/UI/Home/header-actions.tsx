@@ -21,7 +21,7 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
 
   return (
     <>
-      <header className="lg:min-h-[40rem] md:min-h-[38rem] min-h-screen relative">
+      <header className="lg:min-h-[40rem] md:min-h-[38rem] min-h-screen relative text-white">
         <Image
           src={firstMovie?.backdrop_path ? firstMovie.backdrop_path : movieData[0].backdrop_path}
           alt={`${firstMovie.title} Movie Cover`}
@@ -37,7 +37,7 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
             <div className="md:max-w-contain mx-auto w-11/12">
               <div className="flex justify-between items-center w-full">
                 <div className="max-w-2xl">
-                  <h1 className="text-7xl font-extrabold">{firstMovie.title}</h1>
+                  <h1 className="text-[4rem] font-extrabold">{firstMovie.title}</h1>
 
                   <div className="mt-3 space-y-3">
                     <p className="text-lg">{firstMovie.overview}</p>

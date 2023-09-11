@@ -2,3 +2,10 @@
   background: url("/images/background/john_wick.jpeg") no-repeat center;
   background-size: cover;
 }
+
+
+@media screen and (max-width: 460px) {
+  #movieCon {
+    grid-template-columns: 1fr;
+  }
+}

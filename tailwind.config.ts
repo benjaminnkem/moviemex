@@ -14,6 +14,9 @@ const config: Config = {
       maxWidth: {
         contain: "1488px",
       },
+      colors: {
+        darkShade: "#151515",
+      },
     },
   },
   plugins: [],
