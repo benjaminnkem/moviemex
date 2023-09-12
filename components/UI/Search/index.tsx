@@ -19,13 +19,8 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
   const [status, setStatus] = useState<{ loading: boolean }>({ loading: false });
   const [moviesHighestLength] = useState<number>(25);
 
-  const [queryParam, setQueryParam] = useState<string>("");
-  const regularExpression = new RegExp(`(${queryParam})`, "gi"); // for search text highlighting
-
   const searchForMovie = async (movieTitle: string) => {
     if (!movieTitle) return;
-
-    setQueryParam(movieTitle);
 
     setStatus({ ...status, loading: true });
     const res = await fetch(`/api/movie/search/${movieTitle}`);
@@ -51,11 +46,11 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
 
   return (
     <div
-      className={`fixed overscroll-y-scroll w-full grid place-content-center backdrop-blur-sm left-0 top-0 duration-200 ${
+      className={`fixed overscroll-y-scroll w-full flex items-center backdrop-blur-sm left-0 top-0 duration-200 ${
         isOpen ? "z-[250] h-full" : "-z-[250] h-0 opacity-0"
       }`}
     >
-      <div className="md:min-w-[560px] min-h-[10rem] max-h-[35rem] overflow-y-auto bg-white z-[1000] px-4 dark:bg-darkShade shadow-md w-11/12 rounded-lg dark:text-white text-black relative">
+      <div className="max-w-[560px] min-h-[10rem] max-h-[35rem] w-11/12 mx-auto overflow-y-auto bg-white z-[1000] px-4 dark:bg-darkShade shadow-md rounded-lg dark:text-white text-black relative">
         <div className="sticky top-0 bg-white dark:bg-darkShade">
           <div className="flex justify-between items-center py-2">
             <div className="flex space-x-2 items-center">
