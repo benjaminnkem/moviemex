@@ -51,7 +51,7 @@ const Home: React.FC = async () => {
           </h2>
 
           <div className="grid md:grid-cols-3 grid-cols-2 md:gap-20 sm:gap-16 gap-8 py-20" id="movieCon">
-            {formattedMoviesData.map((movie) => (
+            {formattedMoviesData.slice(0, 10).map((movie) => (
               <MovieDetailsShowcase key={movie.id} movie={movie} />
             ))}
           </div>

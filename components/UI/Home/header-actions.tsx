@@ -74,7 +74,7 @@ const HeaderActions = ({ children, movieData }: HeaderActions) => {
                         <span>{idx + 1}</span>
                       </li>
                     ))}
-                  {slideLength < 8 && (
+                  {slideLength < 10 && (
                     <FontAwesomeIcon
                       icon={faPlus}
                       onClick={() => incrementSlideLength()}

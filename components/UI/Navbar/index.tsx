@@ -60,7 +60,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
               <span className="font-bold text-xl">MovieMex</span>
             </div>
 
-            <ul className="hidden space-x-4 items-center md:flex">
+            {/* <ul className="hidden space-x-4 items-center md:flex">
               {navLinks.map((item, idx) => (
                 <li
                   key={idx}
@@ -71,10 +71,23 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
                   {item.tag}
                 </li>
               ))}
-            </ul>
+            </ul> */}
+
+            <div className="xl:min-w-[40rem] lg:min-w-[35rem] md:min-w-[20rem] md:flex border rounded-lg px-4 focus-within:border-white text-white border-gray-400 duration-200 bg-transparent hidden items-center justify-between">
+              <input
+                type="text"
+                className="py-2 text-white bg-transparent outline-none flex-grow placeholder:text-white"
+                placeholder="What do you want to watch?"
+                autoComplete="off"
+                onFocus={toggleSearchBar}
+              />
+              <FontAwesomeIcon icon={faSearch} className="text-sm" />
+            </div>
 
             <div className="flex space-x-4 items-center">
-              <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" onClick={toggleSearchBar} />
+              <div className="md:hidden block">
+                <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" />
+              </div>
 
               <div className="flex items-center space-x-1 text-sm cursor-pointer" title="Change Language">
                 <FontAwesomeIcon icon={faEarth} className="text-red-500" />

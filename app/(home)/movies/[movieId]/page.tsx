@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: any }) {
   };
 
   const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options);
-  if (!res.ok) return null;
+  if (!res.ok) return {};
 
   const movieData: MovieData = await res.json();
 
