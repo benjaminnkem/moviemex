@@ -43,8 +43,8 @@ const getMovieDetails = async (params: any) => {
   return response.json();
 };
 
-const MainMovieDetails = async ({ params }) => {
-  const movieDetails = await getMovieDetails(params);
+const MainMovieDetails = async ({ params }: { params: any }) => {
+  const movieDetails: any = await getMovieDetails(params);
 
   return (
     <>
@@ -70,10 +70,14 @@ const MainMovieDetails = async ({ params }) => {
           <div>
             <div className="flex space-x-4 flex-wrap">
               <div className="flex items-center flex-wrap space-x-2 text-xl">
-                <p className="" data-testid="movie-title">{movieDetails.original_title}</p>
+                <p className="" data-testid="movie-title">
+                  {movieDetails.original_title}
+                </p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
-                <p className="" data-testid="movie-release-date">{new Date(movieDetails.release_date).getFullYear()}</p>
+                <p className="" data-testid="movie-release-date">
+                  {new Date(movieDetails.release_date).getFullYear()}
+                </p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
                 <p className="">PG-13</p>
@@ -84,7 +88,7 @@ const MainMovieDetails = async ({ params }) => {
 
               <div className="flex items-center space-x-2">
                 <>
-                  {movieDetails.genres.map((genre) => (
+                  {movieDetails.genres.map((genre: { id: number; name: string }) => (
                     <p
                       key={genre.id}
                       className="px-2 py-1 rounded-full cursor-pointer duration-200 hover:border-rose-500 text-xs border border-gray-200 text-rose-500"
