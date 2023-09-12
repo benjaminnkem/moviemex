@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest, { params }: { params: any }) {
+export async function GET(_: any, { params }: { params: any }) {
   const { movieTitle } = params;
 
   const getMovies = await fetch(
