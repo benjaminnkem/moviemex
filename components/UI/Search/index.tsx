@@ -7,6 +7,7 @@ import { MovieData } from "@/lib/types/movieData.types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Dna } from "react-loader-spinner";
+import Link from "next/link";
 
 interface SearchComponentProps {
   isOpen: boolean;
@@ -14,7 +15,7 @@ interface SearchComponentProps {
 }
 
 const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
-  const [moviesResults, setMoviesResult] = useState<MovieData[]>([] as MovieData);
+  const [moviesResults, setMoviesResult] = useState<MovieData[]>([]);
   const [status, setStatus] = useState<{ loading: boolean }>({ loading: false });
   const [moviesHighestLength] = useState<number>(25);
 
@@ -29,7 +30,7 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
     setStatus({ ...status, loading: true });
     const res = await fetch(`/api/movie/search/${movieTitle}`);
     if (!res.ok) {
-      setMoviesResult([] as MovieData);
+      setMoviesResult([]);
       toast.error("Sorry an error occurred, you might not be connected to the internet", { id: "error message" });
       setStatus({ ...status, loading: false });
       return;
@@ -72,7 +73,7 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
               type="text"
               className="py-2 bg-transparent outline-none flex-grow"
               placeholder="Search MovieMex"
-              onKeyUp={(e) => searchForMovie(e.target.value)}
+              onKeyUp={(e: any) => searchForMovie(e.target.value)}
             />
           </div>
         </div>
@@ -95,25 +96,27 @@ const SearchComponent = ({ isOpen, togggleOpen }: SearchComponentProps) => {
                 <ul className="space-y-2">
                   {moviesResults.map((movie) => (
                     <li key={movie.id}>
-                      <div
-                        className="flex space-x-4 cursor-pointer duration-200 hover:bg-rose-50 dark:hover:bg-rose-600 p-1 rounded-md"
-                        title={movie.title}
-                      >
-                        <div className="h-16 w-16 overflow-hidden rounded-md">
-                          <Image
-                            src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
-                            alt={movie.title}
-                            width={500}
-                            height={500}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
+                      <Link href={`/movies/${movie.id}`}>
+                        <div
+                          className="flex space-x-4 cursor-pointer duration-200 hover:bg-rose-50 dark:hover:bg-rose-600 p-1 rounded-md"
+                          title={movie.title}
+                        >
+                          <div className="h-16 w-16 overflow-hidden rounded-md">
+                            <Image
+                              src={`https://image.tmdb.org/t/p/w200${movie.backdrop_path}`}
+                              alt={movie.title}
+                              width={500}
+                              height={500}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
 
-                        <div>
-                          <h4 className="text-lg font-bold">{movie.title}</h4>
-                          <p>{new Date(movie.release_date).getFullYear()}</p>
+                          <div>
+                            <h4 className="text-lg font-bold">{movie.title}</h4>
+                            <p>{new Date(movie.release_date).getFullYear()}</p>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </li>
                   ))}
                 </ul>
