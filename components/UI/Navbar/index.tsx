@@ -86,7 +86,7 @@ const Navbar: React.FC = ({ isTransparent }: NavbarProps) => {
 
             <div className="flex space-x-4 items-center">
               <div className="md:hidden block">
-                <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" />
+                <FontAwesomeIcon icon={faSearch} className="cursor-pointer text-sm" onClick={toggleSearchBar} />
               </div>
 
               <div className="flex items-center space-x-1 text-sm cursor-pointer" title="Change Language">
