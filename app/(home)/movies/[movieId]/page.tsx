@@ -46,6 +46,31 @@ const getMovieDetails = async (params: any) => {
 const MainMovieDetails = async ({ params }: { params: any }) => {
   const movieDetails: any = await getMovieDetails(params);
 
+  const formateDate = (date: string) => {
+    const formDate = new Date(date);
+    const day = formDate.getUTCDay();
+    const formattedDay = `${day}${day === 3 ? "rd" : day === 2 ? "nd" : day === 1 ? "st" : "th"}`;
+
+    const allMonths = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const month = allMonths[formDate.getUTCMonth()];
+    const year = formDate.getUTCFullYear();
+
+    return `${formattedDay} ${month}, ${year}.`;
+  };
+
   return (
     <>
       <header className="min-h-[30rem] relative w-full rounded-lg overflow-hidden">
@@ -75,9 +100,7 @@ const MainMovieDetails = async ({ params }: { params: any }) => {
                 </p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
-                <p className="" data-testid="movie-release-date">
-                  {new Date(movieDetails.release_date).getFullYear()}
-                </p>
+                <p className="">{new Date(movieDetails.release_date).getFullYear()}</p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
                 <p>PG-13</p>
@@ -89,7 +112,7 @@ const MainMovieDetails = async ({ params }: { params: any }) => {
                 <p>{movieDetails.status}</p>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 select-none">
                 <>
                   {movieDetails.genres.map((genre: { id: number; name: string }) => (
                     <p
@@ -113,6 +136,12 @@ const MainMovieDetails = async ({ params }: { params: any }) => {
                 <p>
                   Status: <span className="text-rose-500 font-semibold">{movieDetails.status}</span>
                 </p>
+                <p>
+                  Release Date:{" "}
+                  <span className="text-rose-500 font-semibold" data-testid="movie-release-date">
+                    {formateDate(movieDetails.release_date)}
+                  </span>
+                </p>
               </div>
             </div>
           </div>
@@ -127,10 +156,11 @@ const MainMovieDetails = async ({ params }: { params: any }) => {
               </button>
             </div>
 
-            <div className="min-h-[10rem] rounded-md grid grid-cols-3 overflow-hidden relative">
-              <div className="bg-gray-300"></div>
-              <div className="bg-gray-400"></div>
-              <div className="bg-gray-500"></div>
+            <div className="min-h-[10rem] rounded-md grid grid-cols-4 overflow-hidden relative">
+              <div className="bg-rose-300"></div>
+              <div className="bg-rose-400"></div>
+              <div className="bg-rose-500"></div>
+              <div className="bg-rose-600"></div>
 
               <div className="absolute bottom-0 w-full text-sm py-1 bg-black bg-opacity-40 text-center flex items-center justify-center text-white space-x-2">
                 <div>
