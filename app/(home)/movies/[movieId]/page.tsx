@@ -80,10 +80,13 @@ const MainMovieDetails = async ({ params }: { params: any }) => {
                 </p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
-                <p className="">PG-13</p>
+                <p>PG-13</p>
                 <span className="rounded-full w-1 h-1 bg-gray-800"></span>
 
-                <p className="">{movieDetails.status}</p>
+                <p data-testid="movie-runtime">124m</p>
+                <span className="rounded-full w-1 h-1 bg-gray-800"></span>
+
+                <p>{movieDetails.status}</p>
               </div>
 
               <div className="flex items-center space-x-2">
