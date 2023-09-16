@@ -5,9 +5,11 @@ import HeaderActions from "@/components/UI/Home/header-actions";
 import Navbar from "@/components/UI/Navbar";
 import Footer from "@/components/UI/Footer";
 import MovieDetailsShowcase from "@/components/UI/Home/movie-details";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const getInitialMovies = async () => {
-  const url = "https://api.themoviedb.org/3/trending/movie/day?language=en-US";
+  const url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
   const options = {
     method: "GET",
     headers: {
@@ -46,9 +48,15 @@ const Home: React.FC = async () => {
 
       <div className="md:max-w-[1024px] mx-auto w-11/12">
         <section className="mt-20">
-          <h2 className="text-3xl font-bold text-center">
-            Trending <span className="text-rose-500">Movies</span>
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-bold text-center">
+              Featured <span className="text-rose-500">Movies</span>
+            </h2>
+            <p className="text-rose-500 flex items-center gap-2 cursor-pointer select-none">
+              <span>See More</span>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-3 grid-cols-2 md:gap-20 sm:gap-16 gap-8 py-20" id="movieCon">
             {formattedMoviesData.slice(0, 10).map((movie) => (

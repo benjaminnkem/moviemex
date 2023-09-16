@@ -15,7 +15,7 @@ const MovieDetailsShowcase = ({ movie }: MovieDetailsShowcaseProps) => {
         className="w-full overflow-hidden rounded-md group  cursor-pointer bg-white dark:bg-transparent"
         data-testid="movie-card"
       >
-        <div className="h-[20rem] relative duration-200 overflow-hidden">
+        <div className="h-[24rem] relative duration-200 overflow-hidden">
           <Image
             src={movie.poster_path}
             alt={`${movie.title} Movie Cover`}
@@ -41,9 +41,9 @@ const MovieDetailsShowcase = ({ movie }: MovieDetailsShowcaseProps) => {
               <Image src={IMDBLogo} alt="IMDBLogo" width={37} height={17} />
               <p>{Number((Number(movie.vote_average.toFixed(2)) * 10).toFixed(2))} / 100</p>
             </div>
-            <ul className="flex space-x-1 text-gray-400 dark:text-gray-300">
+            <ul className="flex space-x-1 text-gray-500">
               {getGenreName(movie.genre_ids).map((genre, idx) => (
-                <li key={idx}>{checkForLastGenre(idx, movie.genre_ids) ? genre : `${genre},`}</li>
+                <li key={idx} className="text-sm">{checkForLastGenre(idx, movie.genre_ids) ? genre : `${genre},`}</li>
               ))}
             </ul>
           </div>
