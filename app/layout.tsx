@@ -10,8 +10,8 @@ config.autoAddCss = false;
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HNGX Movie App - Benjamin Nkem",
-  description: "HNGX Task 2 Movie App by Nkem Benjamin",
+  title: "Moviex Mex",
+  description: "Moviex Mex by Nkem Benjamin",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
