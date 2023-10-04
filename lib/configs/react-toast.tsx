@@ -18,7 +18,6 @@ const ReactToast = () => {
       icon: "⏳",
       duration: Infinity,
     },
-    // Add any other configurations you need here
   } as const;
 
   return (
